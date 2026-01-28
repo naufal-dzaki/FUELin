@@ -80,7 +80,6 @@ export default async function ScrapingStatusPage() {
               </AlertDescription>
             </Alert>
 
-            {/* Latest Updates */}
             <Card>
               <CardHeader>
                 <CardTitle>Update Terakhir per Provider</CardTitle>
@@ -106,7 +105,6 @@ export default async function ScrapingStatusPage() {
               </CardContent>
             </Card>
 
-            {/* Fuel Sources */}
             <Card>
               <CardHeader>
                 <CardTitle>Sumber Harga BBM</CardTitle>
@@ -135,7 +133,6 @@ export default async function ScrapingStatusPage() {
               </CardContent>
             </Card>
 
-            {/* Scraping Logs */}
             <Card>
               <CardHeader>
                 <CardTitle>Log Scraping</CardTitle>
@@ -149,22 +146,37 @@ export default async function ScrapingStatusPage() {
                 ) : (
                   <div className="space-y-3">
                     {logs.map((log: ScrapingLog) => (
-                      <div key={log.id} className="flex items-start gap-3 rounded-lg border p-4">
-                        {log.status === "success" ? (
-                          <CheckCircle2 className="h-5 w-5 text-primary mt-0.5" />
+                      <div
+                        key={log.id}
+                        className="flex items-start gap-3 rounded-lg border p-4"
+                      >
+                        {log.status === "SUCCESS" ? (
+                          <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
                         ) : (
-                          <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
+                          <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
                         )}
+
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
                             <span className="font-medium">{log.provider}</span>
-                            <Badge variant={log.status === "success" ? "default" : "destructive"}>
+
+                            <Badge
+                              className={
+                                log.status === "SUCCESS"
+                                  ? "bg-green-600 text-white"
+                                  : "bg-red-600 text-white"
+                              }
+                            >
                               {log.status}
                             </Badge>
                           </div>
+
                           {log.message && (
-                            <p className="mt-1 text-sm text-muted-foreground">{log.message}</p>
+                            <p className="mt-1 text-sm text-muted-foreground">
+                              {log.message}
+                            </p>
                           )}
+
                           <p className="mt-1 text-xs text-muted-foreground">
                             {formatDate(log.createdAt)}
                           </p>
