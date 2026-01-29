@@ -1,6 +1,6 @@
 import { Page } from "playwright"
 import { determineFuelType } from "./fuel-types"
-import { FuelPriceData } from "@/actions/fuel"
+import { FuelPriceData } from "@/actions/scrape"
 
 export async function scrapeShell(page: Page): Promise<FuelPriceData[]> {
   console.log("\n🚀 Scraping Shell...")
