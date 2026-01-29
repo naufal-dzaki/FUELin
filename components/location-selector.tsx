@@ -108,8 +108,7 @@ export function LocationSelector({
 
   useEffect(() => {
     const parts = [
-      village?.label,
-      district?.label,
+      village ? village?.label : district?.label,
       regency?.label,
       province?.label,
     ].filter(Boolean)
